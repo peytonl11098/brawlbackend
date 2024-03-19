@@ -3,7 +3,7 @@ import pandas as pd
 
 
 # Replace 'path_to_your_csv_file' with the actual path where your CSV file is located
-file_path = '/Users/Jayden.Chen/vscode/csp/modeldata/lebron_career.csv'
+file_path = '/Users/Jayden.Chen/vscode/brawlbackend/static/assets/lebron_career.csv'
 
 # Load the CSV file into a pandas DataFrame
 lebron_career_df = pd.read_csv(file_path)
