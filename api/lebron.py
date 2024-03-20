@@ -11,18 +11,26 @@ lebron_api = Blueprint('lebron_api', __name__,
 # API docs https://flask-restful.readthedocs.io/en/latest/api.html
 api = Api(lebron_api)
 
-class LebronAPI:        
-    class _CRUD(Resource):  # User API operation for Create, Read.  THe Update, Delete methods need to be implemeented
-        def post(self): # Create method
-            ''' Read data for json body '''
+class LebronAPI:
+    class _CRUD(Resource):
+        def post(self):
+            # Read data from JSON body
             body = request.get_json()
             
-            ''' Avoid garbage in, error checking '''
-            # validate Abbreviation
+            # Extract opponent abbreviation
             opp = body.get('Abbreviation')
             if opp is None or len(opp) < 2:
                 return {'message': f'Name is missing, or is less than 2 characters'}, 400
-            uo = LebronStatsPredict(opp=opp)
+            
+            # Create an instance of LebronStatsPredict
+            lebron_predictor = LebronStatsPredict(opp=opp)
+            
+            # Predict statistics
+            stats = lebron_predictor.predict()
+            
+            # Return the result
+            return stats, 200
+
             
     # building RESTapi endpoint
     api.add_resource(_CRUD, '/')
