@@ -15,7 +15,7 @@ class LebronStatsPredict:
 
     def predict(self):
         # Load LeBron career data
-        file_path = '/Users/Jayden.Chen/vscode/brawlbackend/static/assets/lebron_career.csv'
+        file_path = 'static/assets/lebron_career.csv'
         lebron_career_df = pd.read_csv(file_path)
 
         # Filter data for the specified opponent
