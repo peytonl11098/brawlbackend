@@ -9,6 +9,7 @@ from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
 
 import pandas as pd
+
 class LebronStatsPredict:
     def __init__(self, opp):
         self.opp = opp
@@ -37,11 +38,18 @@ class LebronStatsPredict:
         average_stats = last_10_games[['mp', 'pts', 'ast', 'rebounds', 'stl', 'blk', 'tov', 'fg_percentage']].mean()
         average_stats_rounded = average_stats.round(1)
 
-        return {
+        # Incorporate the new formula for prediction
+        prediction = {
             'opponent': self.opp,
             'average_minutes_played_hours': round(average_stats_rounded['mp'] / 60, 1),
             'average_stats_rounded': average_stats_rounded.to_dict()
         }
+
+        # Example of incorporating the new formula:
+        # Calculate prediction based on the new formula
+        # prediction['new_prediction'] = some_calculation(average_stats_rounded)
+
+        return prediction
 
 def initLebron(opp):
     # Load LeBron career data
