@@ -15,6 +15,7 @@ from api.joke import joke_api # Blueprint import api definition
 from api.user import user_api # Blueprint import api definition
 from api.player import player_api
 from api.lebron import lebron_api
+from api.todo_api import todo_api 
 # database migrations
 from model.users import initUsers
 from model.players import initPlayers
@@ -33,6 +34,7 @@ app.register_blueprint(covid_api) # register api routes
 app.register_blueprint(user_api) # register api routes
 app.register_blueprint(player_api)
 app.register_blueprint(lebron_api)
+app.register_blueprint(todo_api)
 app.register_blueprint(app_projects) # register app pages
 
 @app.errorhandler(404)  # catch for URL not found
